@@ -12,7 +12,7 @@ namespace Lab04_CSharp.Tools.DataStorage
         List<Person> AddUser(Person user);
 
         List<Person> DeleteUser(Person user);
-        
+
         List<Person> UsersList { get; }
     }
 }

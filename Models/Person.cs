@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 namespace Lab04_CSharp.Models
 {
     [Serializable]
-    class Person
+    public class Person
     {
 
         public Person(string name, string surname, string email, DateTime birthday)

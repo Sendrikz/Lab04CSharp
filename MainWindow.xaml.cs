@@ -34,8 +34,6 @@ namespace Lab04_CSharp
 
         }
 
-
-
         private void InitializeApplication()
 
         {

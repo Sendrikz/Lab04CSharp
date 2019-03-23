@@ -45,16 +45,12 @@ namespace Lab04_CSharp.Tools.DataStorage
 
             return _users;
         }
-
-
-
+        
         public List<Person> UsersList
         {
             get { return _users.ToList(); }
         }
-
-
-
+        
         private void SaveChanges()
         {
             SerializationManager.Serialize(_users, FileFolderHelper.StorageFilePath);

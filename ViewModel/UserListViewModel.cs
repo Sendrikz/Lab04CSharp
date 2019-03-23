@@ -11,29 +11,34 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 
 namespace Lab04_CSharp.ViewModel
 {
-    class UserListViewModel : INotifyPropertyChanged
+    public class UserListViewModel : INotifyPropertyChanged
     {
         #region Fields
         private string _name;
         private string _surname;
         private string _email;
         private DateTime _birthDate;
+        private bool _sortingAsc = true;
+
+        public Person SelectedItem { get; set; }
+        public string SelectedSortFilterProperty { get; set; }
+        private ObservableCollection<Person> _persons;
+        private static CollectionView _sortFilterOptionsCollection;
 
         private RelayCommand<object> _addCommand;
         private RelayCommand<object> _editCommand;
         private RelayCommand<object> _deleteCommand;
+        private RelayCommand<object> _sortCommand;
 
         public RelayCommand<object> AddCommand => _addCommand ?? (_addCommand = new RelayCommand<object>(AddImpl, o => true));
         public RelayCommand<object> EditCommand => _editCommand ?? (_editCommand = new RelayCommand<object>(EditImpl, o => true));
         public RelayCommand<object> DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand<object>(DeleteImpl, o => true));
 
         #endregion
-
-        public Person SelectedItem { get; set; }
-        private ObservableCollection<Person> _persons;
 
         #region Properties
         public DateTime Birthday
@@ -59,18 +64,19 @@ namespace Lab04_CSharp.ViewModel
             get { return _email; }
             set { _email = value; OnPropertyChanged(); }
         }
-        #endregion
-        
+
         public ObservableCollection<Person> Persons
         {
             get => _persons;
 
             private set
-            { 
+            {
                 _persons = value;
                 OnPropertyChanged();
             }
         }
+        #endregion
+
 
         internal UserListViewModel()
         {
@@ -81,7 +87,7 @@ namespace Lab04_CSharp.ViewModel
 
         private async void AddImpl(object o)
         {
-            var done = await Task.Run(() =>
+            var complete = await Task.Run(() =>
             {
                 try
                 {
@@ -108,7 +114,7 @@ namespace Lab04_CSharp.ViewModel
                 return true;
             });
 
-            if (done)
+            if (complete)
             {
                 Name = "";
                 Surname = "";
@@ -133,7 +139,7 @@ namespace Lab04_CSharp.ViewModel
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Some trouble with edit");
+                    MessageBox.Show("The proccess of editing person finished with exception");
                 }
             });
         }
@@ -151,12 +157,30 @@ namespace Lab04_CSharp.ViewModel
 
                     MessageBox.Show("Person was successfully deleted");
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    MessageBox.Show("Some trouble with delete");
+                    MessageBox.Show("The proccess of deleting person finished with exception");
                 }
             });
         }
+
+        public static CollectionView SortFilterOptions => _sortFilterOptionsCollection ??
+                                                          (_sortFilterOptionsCollection =
+                                                              new CollectionView(SortExtension.SortFiltertOptions));
+
+        public RelayCommand<object> SortCommand =>
+           _sortCommand ?? (_sortCommand =
+               new RelayCommand<object>(SortImpl, o => !string.IsNullOrEmpty(SelectedSortFilterProperty)));
+
+        private async void SortImpl(object o)
+        {
+            await Task.Run(() =>
+            {
+                Persons = new ObservableCollection<Person>(SortExtension.SortByProperty(_persons.ToList(), SelectedSortFilterProperty, _sortingAsc));
+                _sortingAsc = !_sortingAsc;
+            });
+        }
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
