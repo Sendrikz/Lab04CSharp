@@ -23,7 +23,10 @@ namespace Lab04_CSharp.Models
             {
                 throw new InvalidFormatEmailException("Format of your email is wrong", email);
             }
-            
+
+
+            Birthday = birthday;
+
             if (Age < 0)
             {
                 throw new BirthdateInFutureException("There was a mistake. You have not been born yet", Age);
@@ -36,7 +39,6 @@ namespace Lab04_CSharp.Models
             Name = name;
             Surname = surname;
             Email = email;
-            Birthday = birthday;
         }
 
         public Person(string name, string surname, string email) : this(name, surname, email, DateTime.Today)

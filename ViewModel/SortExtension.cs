@@ -24,6 +24,16 @@ namespace Lab04_CSharp
                     )
                 : persons;
         }
+        
+        public static List<Person> FilterByProperty(this List<Person> persons, string property, string query)
+        {
+            if (Array.IndexOf(SortFiltertOptions, property) < 0) return new List<Person>();
+
+            query = query.ToLower();
+            return (from p in persons
+                    where (p.GetType().GetProperty(property)?.GetValue(p, null)).ToString().ToLower().Contains(query)
+                    select p).ToList();
+        }
     }
 }
 

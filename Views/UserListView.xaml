@@ -32,5 +32,9 @@
         <ComboBox HorizontalAlignment="Left" Margin="-264,367,0,0" VerticalAlignment="Top" Width="131" SelectionChanged="ComboBox_SelectionChanged" Text="{Binding SelectedSortFilterProperty, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=SortFilterOptions}"/>
         <Label Content="Sort by" HorizontalAlignment="Left" Margin="-336,367,0,0" VerticalAlignment="Top" Width="51"/>
         <Button Content="Sort" HorizontalAlignment="Left" Margin="-119,367,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SortCommand}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="-264,460,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" Text="{Binding FilterQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Filter by" HorizontalAlignment="Left" Margin="-336,457,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.271,0.652"/>
+        <Button Content="Filter" HorizontalAlignment="Left" Margin="-124,460,0,0" VerticalAlignment="Top" Width="75" Command="{Binding FilterCommand}"/>
+        <Button Content="Cancel filter" HorizontalAlignment="Left" Margin="-229,510,0,0" VerticalAlignment="Top" Width="141" Command="{Binding CancelCommand}" IsEnabled="{Binding ShowCancelFilter}" />
     </Grid>
 </UserControl>
