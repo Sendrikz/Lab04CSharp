@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="550" Width="800">
-    <Grid>
-        <DataGrid ItemsSource="{Binding Persons, Mode=OneWay}"  SelectedItem="{Binding SelectedItem}" IsReadOnly="True" AutoGenerateColumns="False">
+        Height="606.4" Width="1035.2">
+    <Grid Margin="354,0,10.2,54.4">
+        <DataGrid ItemsSource="{Binding Persons, Mode=OneWay}"  SelectedItem="{Binding SelectedItem}" IsReadOnly="True" AutoGenerateColumns="False" Margin="-18,16,10,22.8">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"></DataGridTextColumn>
@@ -18,5 +18,16 @@
                 <DataGridTextColumn Header="IsBirthday" Binding="{Binding IsBirthday}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <DatePicker HorizontalAlignment="Left" Margin="-229,173,0,0" VerticalAlignment="Top" Height="62" Width="162" SelectedDate="{Binding Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="-336,25,0,0" VerticalAlignment="Top"/>
+        <Label Content="Surname" HorizontalAlignment="Left" Margin="-336,73,0,0" VerticalAlignment="Top"/>
+        <Label Content="Birthday" HorizontalAlignment="Left" Margin="-336,172,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="-336,127,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="-229,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="-229,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Text="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="-229,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="-336,259,0,0" VerticalAlignment="Top" Width="80" Height="40" Command="{Binding AddCommand}"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="-229,259,0,0" VerticalAlignment="Top" Width="80" Height="40" Command="{Binding EditCommand}"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="-124,259,0,0" VerticalAlignment="Top" Width="80" Height="40" Command="{Binding DeleteCommand}"/>
     </Grid>
 </UserControl>

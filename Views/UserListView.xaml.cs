@@ -26,5 +26,6 @@ namespace Lab04_CSharp.Views
             InitializeComponent();
             DataContext = new UserListViewModel();
         }
+        
     }
 }

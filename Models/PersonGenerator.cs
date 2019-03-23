@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab04_CSharp.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,29 @@ namespace Lab04_CSharp.Models
                 var name = Names[random.Next(Names.Length)];
                 var surname = Surnames[random.Next(Surnames.Length)];
 
-               
-                persons.Add(new Person(name, surname,
-                    $"{name}.{surname}@gmail.com",
-                   new DateTime(
-                            random.Next(DateTime.Today.Year - 50, DateTime.Today.Year - 1),
-                            random.Next(1, 13), random.Next(1, 30))));
+                try
+                {
+                    persons.Add(new Person(name, surname,
+                        $"{name}.{surname}@gmail.com",
+                       new DateTime(
+                                random.Next(DateTime.Today.Year - 50, DateTime.Today.Year - 1),
+                                random.Next(1, 13), random.Next(1, 30))));
+                }
+                catch (InvalidFormatEmailException ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                    Console.WriteLine($"Invalid value: {ex.Email}");
+                }
+                catch (BirthdateInFutureException ex1)
+                {
+                    Console.WriteLine($"Error: {ex1.Message}");
+                    Console.WriteLine($"Invalid value: {ex1.Age}");
+                }
+                catch (BirthdateInPastException ex2)
+                {
+                    Console.WriteLine($"Error: {ex2.Message}");
+                    Console.WriteLine($"Invalid value: {ex2.Age}");
+                }
             }
             
             return persons;

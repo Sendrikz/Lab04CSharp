@@ -24,7 +24,6 @@ namespace Lab04_CSharp.Models
                 throw new InvalidFormatEmailException("Format of your email is wrong", email);
             }
             
-            /**
             if (Age < 0)
             {
                 throw new BirthdateInFutureException("There was a mistake. You have not been born yet", Age);
@@ -33,7 +32,7 @@ namespace Lab04_CSharp.Models
             {
                 throw new BirthdateInPastException("There was a mistake. Your age is above 135", Age);
             }
-    */
+    
             Name = name;
             Surname = surname;
             Email = email;
