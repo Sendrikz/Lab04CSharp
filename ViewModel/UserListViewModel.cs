@@ -3,7 +3,6 @@ using Lab04_CSharp.Models;
 using Lab04_CSharp.Properties;
 using Lab04_CSharp.Tools;
 using Lab04_CSharp.Tools.Managers;
-using Lab04_CSharp.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -191,8 +190,7 @@ namespace Lab04_CSharp.ViewModel
                     StationManager.DataStorage.DeleteUser(SelectedItem);
 
                     Persons = new ObservableCollection<Person>(StationManager.DataStorage.UsersList);
-
-                    MessageBox.Show("Person was successfully deleted");
+                    
                 }
                 catch (Exception)
                 {

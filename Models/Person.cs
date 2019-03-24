@@ -1,11 +1,5 @@
 ﻿using Lab04_CSharp.Exceptions;
-using Lab04_CSharp.Properties;
-using Lab04_CSharp.Tools;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 
 namespace Lab04_CSharp.Models
@@ -13,7 +7,6 @@ namespace Lab04_CSharp.Models
     [Serializable]
     public class Person
     {
-
         public Person(string name, string surname, string email, DateTime birthday)
         {
             
